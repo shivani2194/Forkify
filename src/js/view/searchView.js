@@ -1,0 +1,1 @@
+export default 'I am imported from china but I am not CORONA';
