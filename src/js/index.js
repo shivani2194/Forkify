@@ -1,6 +1,33 @@
 // Global app controller
 
-import {add, mul} from "./models/Search";
-import string from './view/searchView';
+import Search from "./models/Search";
+import {element} from "./view/DOMelements";
+import * as searchView from "./view/searchView";
 
-console.log(`npm ${string} Addtion:${add(2,6)} and Multiplication is ${mul (2,8)}`);
+/**Global state of the app
+ *-Search object
+ *- Current recipe object
+ *-Liked recipes
+ *-Shopping list object
+ */
+const state = {};
+const controlSearch = async () => {
+  //get Query
+  const query = searchView.getInput();
+
+  if (query) {
+    //state.search
+    state.search = new Search(query);
+    console.log(state.search);
+    //Prepare UI for Results
+    //Search for recipe
+    await state.search.getResults();
+    //render results on UI
+    
+  searchView.renderResult(state.search.result);
+  }
+};
+element.searchButton.addEventListener("submit", (e) => {
+  e.preventDefault();
+  controlSearch();
+});
