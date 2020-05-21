@@ -1,10 +1,7 @@
 import { element } from "./DOMelements";
 export const getInput = () => element.searchInput.value;
-const renderRecipe = recipe => {
-    console.log(`Here is the 
-    RECIPE:${recipe}`)
-  const markup =
-  `
+const renderRecipe = (recipe) => {
+  const markup = `
         <li>
             <a class="results__link" href="#${recipe.recipe_id}">
                 <figure class="results__fig">
@@ -19,14 +16,12 @@ const renderRecipe = recipe => {
     `;
   document
     .querySelector(".results__list")
-    .insertAdjacentElement("beforeend", markup);
-
+    .insertAdjacentHTML("beforeend", markup);
 };
 
-export const renderResult = recipes => {
-    console.log(`Here are the RECIPES:${recipes}`)
-  recipes.forEach(el => renderRecipe(el));
-  
+export const renderResult = (recipes) => {
+  console.log(`Here are the RECIPES:${JSON.stringify(recipes)}`);
+  recipes.forEach((el) => renderRecipe(el));
 };
 
 /*

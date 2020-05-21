@@ -18,11 +18,11 @@ const controlSearch = async () => {
   if (query) {
     //state.search
     state.search = new Search(query);
-    console.log(state.search);
     //Prepare UI for Results
     //Search for recipe
     await state.search.getResults();
     //render results on UI
+    console.log(state.search);
     
   searchView.renderResult(state.search.result);
   }
