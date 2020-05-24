@@ -1,7 +1,7 @@
 // Global app controller
 
 import Search from "./models/Search";
-import {element} from "./view/DOMelements";
+import { element } from "./view/DOMelements";
 import * as searchView from "./view/searchView";
 
 /**Global state of the app
@@ -19,12 +19,14 @@ const controlSearch = async () => {
     //state.search
     state.search = new Search(query);
     //Prepare UI for Results
+    searchView.clearInput();
+    searchView.clearResult();
     //Search for recipe
     await state.search.getResults();
     //render results on UI
     console.log(state.search);
-    
-  searchView.renderResult(state.search.result);
+
+    searchView.renderResult(state.search.result);
   }
 };
 element.searchButton.addEventListener("submit", (e) => {
