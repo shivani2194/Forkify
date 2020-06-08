@@ -1,22 +1,21 @@
+import axios from "axios";
+import { proxy } from "../config";
 
-import axios from 'axios';
+export default class Search {
+  constructor(query) {
+    this.query = query;
+  }
 
-export default class Search{
-    constructor(query){
-        this.query = query;
+  async getResults() {
+    try {
+      const res = await axios(
+        `${proxy}http://forkify-api.herokuapp.com/api/search?&q=${this.query}`
+      );
+      this.result = res.data.recipes;
+      console.log(this.result);
+    } catch (error) {
+      console.log(error);
     }
-
-   
-    async getResults(){
-        const proxy = 'https://cors-anywhere.herokuapp.com/'
-        try {
-        const res = await axios(`${proxy}https://forkify-api.herokuapp.com/api/search?&q=${this.query}`);
-        this.result = res.data.recipes
-        //console.log(this.recipes);
-         } catch (error){
-             console.log(error)
-         }
-    }
+  }
 }
-
 
